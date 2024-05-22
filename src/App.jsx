@@ -1,11 +1,8 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
-import ThreeDRotation from "@mui/icons-material/ThreeDRotation";
 import {
   Box,
   Button,
+  Container,
   FormControl,
   InputLabel,
   MenuItem,
@@ -16,18 +13,18 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 
-function ModeToggle() {
-  const { mode, setMode } = useColorScheme(); // use này làm cho bước lưu vào localStorage rồi
-  return (
-    <Button
-      onClick={() => {
-        setMode(mode === "light" ? "dark" : "light");
-      }}
-    >
-      {mode === "light" ? "Turn dark" : "Turn light"}
-    </Button>
-  );
-}
+// function ModeToggle() {
+//   const { mode, setMode } = useColorScheme(); // use này làm cho bước lưu vào localStorage rồi
+//   return (
+//     <Button
+//       onClick={() => {
+//         setMode(mode === "light" ? "dark" : "light");
+//       }}
+//     >
+//       {mode === "light" ? "Turn dark" : "Turn light"}
+//     </Button>
+//   );
+// }
 
 function ModeSelect() {
   const { mode, setMode } = useColorScheme();
@@ -53,13 +50,13 @@ function ModeSelect() {
           </Box>
         </MenuItem>
         <MenuItem value="dark">
-          <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
             <DarkModeOutlinedIcon fontSize="small" />
             Dark
           </Box>
         </MenuItem>
         <MenuItem value="system">
-          <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
             <SettingsBrightnessIcon fontSize="small" />
             System
           </Box>
@@ -73,32 +70,36 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <ModeSelect />
-        <ModeToggle />
-        <AccessAlarmIcon />
-        <ThreeDRotation />
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Container disableGutters maxWidth={false} sx={{height: '100vh'}}>
+     
+      <Box sx={{
+        backgroundColor: 'primary.light',
+        width: '100%',
+        height:(theme) => theme.trello.appBarHeight,
+        display:'flex',
+        alignItems:'center'
+      }}>
+      <ModeSelect />
+      </Box>
+      <Box sx={{
+        backgroundColor: 'primary.dark',
+        width: '100%',
+        height:(theme) => theme.trello.boardBarHeight,
+        display:'flex',
+        alignItems:'center'
+      }}>
+        Board bar
+      </Box>
+      <Box sx={{
+        backgroundColor: 'primary.main',
+        width: '100%',
+        height: theme => `calc(100vh - ${theme.trello.appBarHeight} - ${theme.trello.boardBarHeight})`,
+        display:'flex',
+        alignItems:'center'
+      }}>
+        Board Content
+      </Box>
+    </Container>
   );
 }
 
