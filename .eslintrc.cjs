@@ -10,7 +10,15 @@ module.exports = {
     "plugin:import/typescript",
   ],
   parserOptions: { ecmaVersion: "latest", sourceType: "module" },
-  settings: { react: { version: "18.2" } },
+  settings: {
+    react: { version: "18.2" },
+    "import/resolver": {
+      alias: {
+        map: [["~", "./src"]],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
   plugins: ["react", "react-hooks", "react-refresh", "import"],
   rules: {
     "react-refresh/only-export-components": "warn",
