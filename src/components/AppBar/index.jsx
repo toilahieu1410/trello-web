@@ -1,20 +1,107 @@
-import React from "react";
-import { Box, Container } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Button,
+  InputAdornment,
+  TextField,
+  Tooltip,
+  Typography,
+} from '@mui/material'
+import ModeSelect from '~/components/ModeSelect'
+import AppsIcon from '@mui/icons-material/Apps'
+import { ReactComponent as TrelloIcon } from '~/assets/trello.svg'
+import SvgIcon from '@mui/material/SvgIcon'
+import Workspaces from './Menus/Workspaces'
+import Recent from './Menus/Recent'
+import Starred from './Menus/Starred'
+import Templates from './Menus/Templates'
+import NotificationNoneIcon from '@mui/icons-material/NotificationsNone'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import Profiles from './Menus/Profile'
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
+import SearchIcon from '@mui/icons-material/Search'
 
 function AppBar() {
   return (
     <Box
+      px={2}
       sx={{
-        backgroundColor: "primary.light",
-        width: "100%",
+        width: '100%',
         height: (theme) => theme.trello.appBarHeight,
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: 2,
+        paddingX: 2,
+        overflowX: 'auto',
+        bgcolor: (theme) =>
+          theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0',
       }}
     >
-      {/* <ModeSelect /> */}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <AppsIcon sx={{ color: '#fff' }} />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+          <SvgIcon
+            component={TrelloIcon}
+            fontSize="small"
+            inheritViewBox
+            sx={{ color: '#fff' }}
+          />
+          <Typography
+            variant="span"
+            sx={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#fff' }}
+          >
+            Trello
+          </Typography>
+        </Box>
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+          <Workspaces />
+          <Recent />
+          <Starred />
+          <Templates />
+          <Button
+            sx={{
+              color: '#fff',
+              border: 'none',
+              '&:hover': { border: 'none' },
+            }}
+            variant="outlined"
+            startIcon={<LibraryAddIcon />}
+          >
+            Create
+          </Button>
+        </Box>
+      </Box>
+
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <TextField
+          id="outlined-search"
+          label="search..."
+          type="search"
+          size="small"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position='start'>
+                <SearchIcon sx={{color: '#fff'}}/>
+              </InputAdornment>
+            )
+          }}
+          sx={{ minWidth: 120, maxWidth: 170,  }}
+
+        />
+        <ModeSelect />
+        <Tooltip title="notification">
+          <Badge color="primary" variant="dot" sx={{ cursor: 'pointer' }}>
+            <NotificationNoneIcon sx={{ color: '#fff' }} />
+          </Badge>
+        </Tooltip>
+        <Tooltip title="Help">
+          <HelpOutlineIcon sx={{ cursor: 'pointer', color: '#fff' }} />
+        </Tooltip>
+        <Profiles />
+      </Box>
     </Box>
-  );
+  )
 }
 
-export default AppBar;
+export default AppBar

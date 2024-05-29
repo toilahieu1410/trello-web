@@ -1,5 +1,6 @@
-import BoardBar from "./pages/Boards/_id";
-import Board from "./pages/Boards/_id";
+
+import BoardBar from './pages/Boards/_id'
+import Board from '~/pages/Boards/_id'
 
 
 // function ModeToggle() {
@@ -16,13 +17,12 @@ import Board from "./pages/Boards/_id";
 // }
 
 
-
 function App() {
-    return (
-        <>
-         <BoardBar />
-        </>
-    )
+  return (
+    <>
+      <Board />
+    </>
+  )
 }
 
-export default App;
+export default App
