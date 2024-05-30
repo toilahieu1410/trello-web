@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Badge,
   Box,
@@ -20,8 +21,10 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import Profiles from './Menus/Profile'
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 import SearchIcon from '@mui/icons-material/Search'
+import CloseIcon from '@mui/icons-material/Close'
 
 function AppBar() {
+  const [searchValue, setSearchValue] = useState('')
   return (
     <Box
       px={2}
@@ -77,21 +80,46 @@ function AppBar() {
         <TextField
           id="outlined-search"
           label="search..."
-          type="search"
+          type="text"
           size="small"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
                 <SearchIcon sx={{color: '#fff'}}/>
               </InputAdornment>
+            ), 
+            endAdornment: (
+              <CloseIcon 
+                fontSize='small' 
+                sx={{color: searchValue ? '#fff' : 'transparent', cursor: 'pointer'}}
+                onClick={() => setSearchValue('')}
+                />
             )
           }}
-          sx={{ minWidth: 120, maxWidth: 170,  }}
+          sx={{ minWidth: 120, 
+            maxWidth: 180,  
+            '& label': {color: '#fff'},
+            '& input': {color: '#fff'},
+            '& label.Mui-focused': {color: '#fff'},
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#fff'
+              },
+              '&:hover fieldset': {
+                borderColor: '#fff'
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#fff'
+              },
+            },
+          }}
 
         />
         <ModeSelect />
         <Tooltip title="notification">
-          <Badge color="primary" variant="dot" sx={{ cursor: 'pointer' }}>
+          <Badge color="warning" variant="dot" sx={{ cursor: 'pointer' }}>
             <NotificationNoneIcon sx={{ color: '#fff' }} />
           </Badge>
         </Tooltip>
