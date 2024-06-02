@@ -13,11 +13,25 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import DragHandleIcon from '@mui/icons-material/DragHandle'
 import ListCards from './ListCards/ListCards'
+import { mapOrder } from '~/utilities/sorts'
 
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
+function Column({ column }) {
 
-function Column() {
+  const {
+    attributes, listeners, setNodeRef, transform, transition } = useSortable({
+    id: column._id,
+    data: { ...column }
+  })
 
+  const dndKitColumnStyles = {
+    // touchAction: 'none', // Dành cho sensor default dạng PointerSensor
+    transform: CSS.Translate.toString(transform),
+    transition
+  }
+  
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
 
@@ -28,8 +42,14 @@ function Column() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+
   return (
     <Box
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         minWidth: '300px',
         maxWidth: '300px',
@@ -57,7 +77,7 @@ function Column() {
             fontWeight: 'bold',
             cursor: 'pointer'
           }}
-        >Column Title</Typography>
+        >{column?.title}</Typography>
         <Box>
           <Tooltip title={'More option'}>
             <ExpandMoreIcon
@@ -107,8 +127,8 @@ function Column() {
         </Box>
       </Box>
 
-        {/* Box list card*/}
-        <ListCards />
+      {/* Box list card*/}
+      <ListCards cards={orderedCards}/>
       <Box
         sx={{
           height: (theme) => theme.trello.columnFooterHeight,

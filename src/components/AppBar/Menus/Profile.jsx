@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Avatar, Box, IconButton, Tooltip, Typography } from '@mui/material'
-import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
