@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import Check from '@mui/icons-material/Check'
 import Cloud from '@mui/icons-material/Cloud'
-import ExpandMoreIcon  from '@mui/icons-material/ExpandMore'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 function Starred() {
   const [anchorEl, setAnchorEl] = useState(null)
@@ -17,7 +17,7 @@ function Starred() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
-  
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -25,7 +25,7 @@ function Starred() {
   return (
     <Box>
       <Button
-           sx={{ color: '#fff'}}
+        sx={{ color: '#fff' }}
         id="basic-button-starred"
         aria-controls={open ? 'basic-menu-starred' : undefined}
         aria-haspopup="true"
@@ -44,7 +44,7 @@ function Starred() {
           'aria-labelledby': 'basic-button-starred',
         }}
       >
-          <MenuItem>
+        <MenuItem>
           <ListItemText inset>Single</ListItemText>
         </MenuItem>
         <MenuItem>

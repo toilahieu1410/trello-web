@@ -17,7 +17,7 @@ function Templates() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
-  
+
   const handleClose = () => {
     setAnchorEl(null)
   }
@@ -25,6 +25,7 @@ function Templates() {
   return (
     <Box>
       <Button
+        sx={{ color: '#fff' }}
         id="basic-button-templates"
         aria-controls={open ? 'basic-menu-templates' : undefined}
         aria-haspopup="true"
@@ -40,10 +41,10 @@ function Templates() {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button-templates',
+          'aria-labelledby': 'basic-button-templates'
         }}
       >
-          <MenuItem>
+        <MenuItem>
           <ListItemText inset>Single</ListItemText>
         </MenuItem>
         <MenuItem>
