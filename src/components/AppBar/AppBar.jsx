@@ -6,7 +6,7 @@ import {
   InputAdornment,
   TextField,
   Tooltip,
-  Typography,
+  Typography
 } from '@mui/material'
 import ModeSelect from '~/components/ModeSelect/ModeSelect'
 import AppsIcon from '@mui/icons-material/Apps'
@@ -39,7 +39,7 @@ function AppBar() {
         overflowX: 'auto',
         '&::-webkit-scrollbar-track': { m: 2 },
         bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0',
+          theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0'
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -67,7 +67,7 @@ function AppBar() {
             sx={{
               color: '#fff',
               border: 'none',
-              '&:hover': { border: 'none' },
+              '&:hover': { border: 'none' }
             }}
             variant="outlined"
             startIcon={<LibraryAddIcon />}
@@ -88,22 +88,25 @@ function AppBar() {
           InputProps={{
             startAdornment: (
               <InputAdornment position='start'>
-                <SearchIcon sx={{color: '#fff'}}/>
+                <SearchIcon sx={{ color: '#fff' }}/>
               </InputAdornment>
-            ), 
+            ),
             endAdornment: (
-              <CloseIcon 
-                fontSize='small' 
-                sx={{color: searchValue ? '#fff' : 'transparent', cursor: 'pointer'}}
-                onClick={() => setSearchValue('')}
+              <InputAdornment position='start'>
+                <CloseIcon
+                  fontSize='small'
+                  sx={{ color: searchValue ? '#fff' : 'transparent', cursor: 'pointer' }}
+                  onClick={() => setSearchValue('')}
                 />
+              </InputAdornment>
+             
             )
           }}
-          sx={{ minWidth: 120, 
-            maxWidth: 180,  
-            '& label': {color: '#fff'},
-            '& input': {color: '#fff'},
-            '& label.Mui-focused': {color: '#fff'},
+          sx={{ minWidth: 120,
+            maxWidth: 180,
+            '& label': { color: '#fff' },
+            '& input': { color: '#fff' },
+            '& label.Mui-focused': { color: '#fff' },
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
                 borderColor: '#fff'
@@ -113,8 +116,8 @@ function AppBar() {
               },
               '&.Mui-focused fieldset': {
                 borderColor: '#fff'
-              },
-            },
+              }
+            }
           }}
 
         />

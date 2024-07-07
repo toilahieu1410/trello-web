@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import { Avatar, AvatarGroup, Box, Button, Chip, Tooltip } from '@mui/material'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import VpnLockIcon from '@mui/icons-material/VpnLock'
@@ -6,7 +6,7 @@ import AddToDriveIcon from '@mui/icons-material/AddToDrive'
 import BoltIcon from '@mui/icons-material/Bolt'
 import FilterListIcon from '@mui/icons-material/FilterList'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
-import { capitalizeFirstLetter } from "~/utilities/formatters"
+import { capitalizeFirstLetter } from '~/utilities/formatters'
 
 const MENU_STYLES = {
   color: '#fff',
@@ -22,8 +22,8 @@ const MENU_STYLES = {
   }
 }
 
-function BoardBar({board}) {
- 
+function BoardBar({ board }) {
+
   return (
     <Box
       sx={{
@@ -37,16 +37,19 @@ function BoardBar({board}) {
         overflowX: 'auto',
         '&::-webkit-scrollbar-track': { m: 2 },
         bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? '#34495e' : '#1976d2',
+          theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'
       }}
     >
       <Box sx={{ display:'flex', alignItems:'center', gap: 2 }}>
+        <Tooltip title={board?.description}>
         <Chip
           sx={MENU_STYLES}
           icon={<DashboardIcon />}
           label={board?.title}
           clickable
         />
+        </Tooltip>
+      
         <Chip
           sx={MENU_STYLES}
           icon={<VpnLockIcon />}
@@ -73,15 +76,15 @@ function BoardBar({board}) {
         />
       </Box>
       <Box sx={{ display:'flex', alignItems:'center', gap: 2 }}>
-        <Button 
-          variant='outlined' 
+        <Button
+          variant='outlined'
           startIcon={< PersonAddIcon />}
           sx={{
             color: '#fff',
             borderColor: '#fff',
-            '&:hover': {borderColor: '#fff'}
+            '&:hover': { borderColor: '#fff' }
           }}
-          >
+        >
             Invite</Button>
         <AvatarGroup
           max={7}
@@ -94,7 +97,7 @@ function BoardBar({board}) {
               border: 'none',
               color: '#fff',
               cursor: 'pointer',
-              '&:first-of-type': {color: '#a4b0be'}
+              '&:first-of-type': { color: '#a4b0be' }
             }
           }}
         >
@@ -156,7 +159,7 @@ function BoardBar({board}) {
         </AvatarGroup>
       </Box>
     </Box>
-  );
+  )
 }
 
-export default BoardBar;
+export default BoardBar
