@@ -48,11 +48,18 @@ export const mockData = {
         _id: 'column-id-03',
         boardId: 'board-id-01',
         title: 'Done Column 03',
-        cardOrderIds: ['card-id-11', 'card-id-12', 'card-id-13'],
+        /**
+         * Video 37.2: Cách xử lý bug logic thư viện Dnd-kit khi column là rỗng
+         * Phía FE sẽ tự tạo ra 1 cái card đặc biệt: Placeholder Card, ko liên quan tới backend
+         * Card đặc biệt này sẽ đc ẩn ở giao diện UI người dùng
+         * Cấu trúc Id của cái card này để Unique rất đơn giản, ko cần phải làm random phức tạp
+         * "columnId-placeholder-card" (mỗi column chỉ có thể có tối đa 1 cái Placeholder Card)
+         * Quan trọng khi tạo: phải đầy đủ: {_id, boardId, columnId, FE_PlaceholderCard}
+         * Kỹ hơn nữa về cách tạo chuẩn ở bước nào thì sẽ học ở phần tích hợp API Backend vào dự án
+         */
+        cardOrderIds: ['card-id-04-placeholder-card'],
         cards: [
-          { _id: 'card-id-11', boardId: 'board-id-01', columnId: 'column-id-03', title: 'Title of card 11', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
-          { _id: 'card-id-12', boardId: 'board-id-01', columnId: 'column-id-03', title: 'Title of card 12', description: null, cover: null, memberIds: [], comments: [], attachments: [] },
-          { _id: 'card-id-13', boardId: 'board-id-01', columnId: 'column-id-03', title: 'Title of card 13', description: null, cover: null, memberIds: [], comments: [], attachments: [] }
+          { _id: 'card-id-04-placeholder-card', boardId: 'board-id-01', columnId: 'column-id-04', FE_PlaceholderCard: true}
         ]
       }
     ]

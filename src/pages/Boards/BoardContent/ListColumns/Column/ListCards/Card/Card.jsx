@@ -11,6 +11,7 @@ import { CSS } from '@dnd-kit/utilities'
 
 function Card({ card }) {
 
+  
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: card._id,
@@ -35,7 +36,10 @@ function Card({ card }) {
       sx={{
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0,0,0,0.2)',
-        overflow: 'unset'
+        overflow: 'unset',
+        display: card?.FE_PlaceholderCard ? 'none' : 'block',
+        border: '1px solid transparent',
+        '&:hover': {borderColor: (theme) => theme.palette.primary.main}
       }}>
       {card?.cover && (
         <CardMedia

@@ -10,7 +10,7 @@ function ListCards({ cards }) {
     >
       <Box
         sx={{
-          p: '0 5px',
+          p: '0 5px 5px 5px',
           m: '0 5px',
           gap: 1,
           display: 'flex',
@@ -34,10 +34,8 @@ function ListCards({ cards }) {
         {cards.map(card => (
           <Card key={card._id} card={card}/>
         ))}
-      
       </Box>
     </SortableContext>
- 
   )
 }
 
