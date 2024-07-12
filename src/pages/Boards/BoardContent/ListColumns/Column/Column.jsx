@@ -19,7 +19,7 @@ import { CSS } from '@dnd-kit/utilities'
 import theme from '~/theme'
 import CloseIcon from '@mui/icons-material/Close'
 import { toast } from 'react-toastify'
-function Column({ column }) {
+function Column({ column, createNewCard }) {
 
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
@@ -56,7 +56,7 @@ function Column({ column }) {
 
   const [newCardTitle, setNewCardTitle] = useState('')
 
-  const addNewCard = () => {
+  const addNewCard = async () => {
     if (!newCardTitle) {
       toast.error('Please enter Card Title', {
         position: 'bottom-right'
@@ -65,8 +65,13 @@ function Column({ column }) {
     }
 
     //console.log(newCardTitle)
-    // Gọi API ở đây...
+    // Tạo dữ liệu Card để gọi API
+    const newCardData = {
+      title: newCardTitle,
+      columnId: column._id
+    }
 
+    await createNewCard(newCardData)
     // Đóng trạng thái thêm Card mới & Clear Input
     toggleOpenNewCardForm()
     setNewCardTitle('')

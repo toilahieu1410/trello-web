@@ -7,20 +7,25 @@ import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortabl
 import { toast } from 'react-toastify'
 
 
-function ListColumns({ columns }) {
+function ListColumns({ columns, createNewColumn, createNewCard }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
 
   const [newColumnTitle, setNewColumnTitle] = useState('')
 
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Please enter Column title')
       return
     } 
 
-    //console.log(newColumnTitle)
-    // Gọi API ở đây...
+    // Tạo dữ liệu Column để gọi API
+    const newColumnData = {
+      title: newColumnTitle
+    }
+
+    // Gọi lên props function createNewColumn nằm ở component cha cao nhất (boards/_id.jsx)
+    await createNewColumn(newColumnData)
 
     // Đóng trạng thái thêm Column mới & Clear Input
     toggleOpenNewColumnForm()
@@ -43,7 +48,7 @@ function ListColumns({ columns }) {
         '&::-webkit-scrollbar-track': { m: 2 }
       }}>
         {columns?.map(column => ( // Khi co cap ngoac nhon thi phai co return
-          <Column key={column._id} column={column}/>
+          <Column key={column._id} column={column} createNewCard={createNewCard}/>
         ))}
 
         {/* Box add new column*/}
@@ -113,22 +118,22 @@ function ListColumns({ columns }) {
               gap:1
             }}>
               <Button
-              onClick={addNewColumn}
+                onClick={addNewColumn}
                 variant='contained' color='success' size='small'
                 sx={{
                   boxShadow: 'none',
                   border: '0.5px solid',
                   borderColor: (theme) => theme.palette.success.main,
-                  '&:hover': {bgcolor: (theme) => theme.palette.success.main}
+                  '&:hover': { bgcolor: (theme) => theme.palette.success.main }
                 }}
               >Add Column</Button>
               <CloseIcon
-                  fontSize='small'
-                  sx={{ color: '#fff', cursor:'pointer',
-                    '&:hover': {color: (theme) => theme.palette.warning.light}
-                    }}
-                  onClick={toggleOpenNewColumnForm}
-                />
+                fontSize='small'
+                sx={{ color: '#fff', cursor:'pointer',
+                  '&:hover': { color: (theme) => theme.palette.warning.light }
+                }}
+                onClick={toggleOpenNewColumnForm}
+              />
             </Box>
           </Box>
         )}
